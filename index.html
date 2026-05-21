@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Меню ресторана Arasan Wellness & Spa">
+  <meta name="theme-color" content="#fdfbf7">
+  <title>Меню — Arasan Wellness & Spa</title>
+  <link rel="preload" href="page1.jpg" as="image" type="image/jpeg" fetchpriority="high">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #fdfbf7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--cream);
+      color: #2c2c2c;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .menu {
+      width: 100%;
+      max-width: 100%;
+      padding: 0;
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+
+    .menu__page {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+      vertical-align: top;
+      background: #e8e4dc;
+    }
+
+    .menu__page:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="menu" role="main" aria-label="Страницы меню">
+    <img class="menu__page" src="page1.jpg" alt="Меню, страница 1" width="1080" height="1920" fetchpriority="high" decoding="async">
+    <img class="menu__page" data-src="page2.jpg" alt="Меню, страница 2" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page3.jpg" alt="Меню, страница 3" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page4.jpg" alt="Меню, страница 4" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page5.jpg" alt="Меню, страница 5" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page6.jpg" alt="Меню, страница 6" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page7.jpg" alt="Меню, страница 7" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page8.jpg" alt="Меню, страница 8" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page9.jpg" alt="Меню, страница 9" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page10.jpg" alt="Меню, страница 10" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page11.jpg" alt="Меню, страница 11" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page12.jpg" alt="Меню, страница 12" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page13.jpg" alt="Меню, страница 13" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page14.jpg" alt="Меню, страница 14" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page15.jpg" alt="Меню, страница 15" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page16.jpg" alt="Меню, страница 16" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page17.jpg" alt="Меню, страница 17" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page18.jpg" alt="Меню, страница 18" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page19.jpg" alt="Меню, страница 19" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page20.jpg" alt="Меню, страница 20" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page21.jpg" alt="Меню, страница 21" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page22.jpg" alt="Меню, страница 22" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page23.jpg" alt="Меню, страница 23" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page24.jpg" alt="Меню, страница 24" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page25.jpg" alt="Меню, страница 25" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page26.jpg" alt="Меню, страница 26" width="1080" height="1920" decoding="async">
+    <img class="menu__page" data-src="page27.jpg" alt="Меню, страница 27" width="1080" height="1920" decoding="async">
+  </main>
+  <script>
+    (function () {
+      var lazy = document.querySelectorAll('img[data-src]');
+      if (!lazy.length) return;
+
+      function load(img) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            load(entry.target);
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: '600px 0px' });
+        lazy.forEach(function (img) { observer.observe(img); });
+      } else {
+        lazy.forEach(load);
+      }
+    })();
+  </script>
+</body>
+</html>
